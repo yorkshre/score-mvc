@@ -1,0 +1,3 @@
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\SklepMuzycznyMVC\SklepMuzycznyMVC\obj\Debug\SklepMuzyczny.csprojResolveAssemblyReference.cache
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\SklepMuzycznyMVC\SklepMuzycznyMVC\obj\Debug\SklepMuzycznyMVC.dll
+C:\Users\Lenovo\Documents\Visual Studio 2013\Projects\SklepMuzycznyMVC\SklepMuzycznyMVC\obj\Debug\SklepMuzycznyMVC.pdb

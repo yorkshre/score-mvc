@@ -1,0 +1,74 @@
+﻿@model SklepMuzycznyMVC.towar
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły</h2>
+
+   
+    <div class="container">
+        <div class="row">
+           
+        
+
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.wykonawca.Imie)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.wykonawca.Imie)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.gatunek.Name)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.gatunek.Name)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Nazwa)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Nazwa)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Cena)
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Cena)
+                </div>
+            </div>
+        </div>
+        
+       
+       
+        </div>
+    </div>
+       
+
+<p>
+    @Html.ActionLink("Dodaj do koszyka","Zamówienie");
+</p>

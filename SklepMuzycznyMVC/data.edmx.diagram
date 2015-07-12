@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="36ff2bf051574fabab53f78d75bde6ba" Name="Diagram1">
+        <EntityTypeShape EntityType="szkola.gatunek" Width="1.5" PointX="0.625" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="szkola.klient" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="szkola.pracownicy" Width="1.5" PointX="3.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="szkola.towar" Width="1.5" PointX="2.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="szkola.wykonawca" Width="1.5" PointX="4.875" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="szkola.wytwornia" Width="1.5" PointX="7.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="szkola.zamowienia" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="szkola.towar_zamowienie" Width="1.5" PointX="6" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="szkola.idgatunku" ManuallyRouted="false" />
+        <AssociationConnector Association="szkola.idklienta" ManuallyRouted="false" />
+        <AssociationConnector Association="szkola.idpracownika" ManuallyRouted="false" />
+        <AssociationConnector Association="szkola.idtowaru" ManuallyRouted="false" />
+        <AssociationConnector Association="szkola.idwykonawcy" ManuallyRouted="false" />
+        <AssociationConnector Association="szkola.idwytworni" ManuallyRouted="false" />
+        <AssociationConnector Association="szkola.idzamowienia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

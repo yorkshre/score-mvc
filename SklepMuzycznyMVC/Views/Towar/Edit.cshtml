@@ -1,0 +1,84 @@
+﻿@model SklepMuzycznyMVC.towar
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>towar</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idTowaru)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idTowaru)
+            @Html.ValidationMessageFor(model => model.idTowaru)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idWykonawcy, "wykonawca")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idWykonawcy", String.Empty)
+            @Html.ValidationMessageFor(model => model.idWykonawcy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idGatunku, "gatunek")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idGatunku", String.Empty)
+            @Html.ValidationMessageFor(model => model.idGatunku)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nazwa)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nazwa)
+            @Html.ValidationMessageFor(model => model.Nazwa)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cena)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cena)
+            @Html.ValidationMessageFor(model => model.Cena)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rok_wyd)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Rok_wyd)
+            @Html.ValidationMessageFor(model => model.Rok_wyd)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ilosc_cd)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Ilosc_cd)
+            @Html.ValidationMessageFor(model => model.Ilosc_cd)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

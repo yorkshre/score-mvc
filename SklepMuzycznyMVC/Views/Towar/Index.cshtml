@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SklepMuzycznyMVC.towar>
+
+@{
+    ViewBag.Title = "Lista towarów";
+}
+
+<h2 class="">Lista towaru</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" width="850" height="50">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idTowaru)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wykonawca.Imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gatunek.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rok_wyd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ilosc_cd)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idTowaru)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.wykonawca.Imie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gatunek.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rok_wyd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ilosc_cd)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idTowaru }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idTowaru }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idTowaru })
+            </td>
+        </tr>
+    }
+
+</table>

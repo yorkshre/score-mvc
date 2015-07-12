@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="szkolaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="gatunek">
+    <Key>
+      <PropertyRef Name="idGatunku" />
+    </Key>
+    <Property Name="idGatunku" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Opis" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="towar" Relationship="Self.idgatunku" FromRole="gatunek" ToRole="towar" />
+  </EntityType>
+  <EntityType Name="klient">
+    <Key>
+      <PropertyRef Name="idKlienta" />
+    </Key>
+    <Property Name="idKlienta" Type="Int32" Nullable="false" />
+    <Property Name="Imie" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nazwisko" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefon" Type="Int32" Nullable="false" />
+    <Property Name="Adres" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nr_konta" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="koszyk" Relationship="Self.idklient" FromRole="klient" ToRole="koszyk" />
+    <NavigationProperty Name="zamowienia" Relationship="Self.idklienta" FromRole="klient" ToRole="zamowienia" />
+  </EntityType>
+  <EntityType Name="towar">
+    <Key>
+      <PropertyRef Name="idTowaru" />
+    </Key>
+    <Property Name="idTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idWykonawcy" Type="Int32" Nullable="false" />
+    <Property Name="idGatunku" Type="Int32" Nullable="false" />
+    <Property Name="Nazwa" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cena" Type="Int32" Nullable="false" />
+    <Property Name="Rok_wyd" Type="DateTime" Nullable="false" />
+    <Property Name="Ilosc_cd" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="gatunek" Relationship="Self.idgatunku" FromRole="towar" ToRole="gatunek" />
+    <NavigationProperty Name="koszyk" Relationship="Self.idtowar" FromRole="towar" ToRole="koszyk" />
+    <NavigationProperty Name="towar_zamowienie" Relationship="Self.idtowaru" FromRole="towar" ToRole="towar_zamowienie" />
+    <NavigationProperty Name="wykonawca" Relationship="Self.idwykonawcy" FromRole="towar" ToRole="wykonawca" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailID" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wykonawca">
+    <Key>
+      <PropertyRef Name="idWykonawcy" />
+    </Key>
+    <Property Name="idWykonawcy" Type="Int32" Nullable="false" />
+    <Property Name="idWytwórni" Type="Int32" Nullable="false" />
+    <Property Name="Imie" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nazwisko" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="towar" Relationship="Self.idwykonawcy" FromRole="wykonawca" ToRole="towar" />
+    <NavigationProperty Name="wytwornia" Relationship="Self.idwytworni" FromRole="wykonawca" ToRole="wytwornia" />
+  </EntityType>
+  <EntityType Name="wytwornia">
+    <Key>
+      <PropertyRef Name="idWytworni" />
+    </Key>
+    <Property Name="idWytworni" Type="Int32" Nullable="false" />
+    <Property Name="Nazwa" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="wykonawca" Relationship="Self.idwytworni" FromRole="wytwornia" ToRole="wykonawca" />
+  </EntityType>
+  <EntityType Name="zamowienia">
+    <Key>
+      <PropertyRef Name="idZamowienia" />
+    </Key>
+    <Property Name="idZamowienia" Type="Int32" Nullable="false" />
+    <Property Name="idKlienta" Type="Int32" Nullable="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="klient" Relationship="Self.idklienta" FromRole="zamowienia" ToRole="klient" />
+    <NavigationProperty Name="towar_zamowienie" Relationship="Self.idzamowienia" FromRole="zamowienia" ToRole="towar_zamowienie" />
+  </EntityType>
+  <EntityType Name="koszyk">
+    <Key>
+      <PropertyRef Name="idTowaru" />
+      <PropertyRef Name="idKlienta" />
+      <PropertyRef Name="Ilosc" />
+    </Key>
+    <Property Name="idTowaru" Type="Int32" Nullable="false" />
+    <Property Name="idKlienta" Type="Int32" Nullable="false" />
+    <Property Name="Ilosc" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="klient" Relationship="Self.idklient" FromRole="koszyk" ToRole="klient" />
+    <NavigationProperty Name="towar" Relationship="Self.idtowar" FromRole="koszyk" ToRole="towar" />
+  </EntityType>
+  <EntityType Name="towar_zamowienie">
+    <Key>
+      <PropertyRef Name="idTowaru" />
+      <PropertyRef Name="idZamowienia" />
+      <PropertyRef Name="Ilosc" />
+      <PropertyRef Name="Cena" />
+    </Key>
+    <Property Name="idTowaru" Type="Int32" Nullable="false" />
+    <Property Name="idZamowienia" Type="Int32" Nullable="false" />
+    <Property Name="Ilosc" Type="Int32" Nullable="false" />
+    <Property Name="Cena" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="towar" Relationship="Self.idtowaru" FromRole="towar_zamowienie" ToRole="towar" />
+    <NavigationProperty Name="zamowienia" Relationship="Self.idzamowienia" FromRole="towar_zamowienie" ToRole="zamowienia" />
+  </EntityType>
+  <Association Name="idgatunku">
+    <End Role="gatunek" Type="Self.gatunek" Multiplicity="1" />
+    <End Role="towar" Type="Self.towar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gatunek">
+        <PropertyRef Name="idGatunku" />
+      </Principal>
+      <Dependent Role="towar">
+        <PropertyRef Name="idGatunku" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idklient">
+    <End Role="klient" Type="Self.klient" Multiplicity="1" />
+    <End Role="koszyk" Type="Self.koszyk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="klient">
+        <PropertyRef Name="idKlienta" />
+      </Principal>
+      <Dependent Role="koszyk">
+        <PropertyRef Name="idKlienta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idklienta">
+    <End Role="klient" Type="Self.klient" Multiplicity="1" />
+    <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="klient">
+        <PropertyRef Name="idKlienta" />
+      </Principal>
+      <Dependent Role="zamowienia">
+        <PropertyRef Name="idKlienta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idtowar">
+    <End Role="towar" Type="Self.towar" Multiplicity="1" />
+    <End Role="koszyk" Type="Self.koszyk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="towar">
+        <PropertyRef Name="idTowaru" />
+      </Principal>
+      <Dependent Role="koszyk">
+        <PropertyRef Name="idTowaru" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idtowaru">
+    <End Role="towar" Type="Self.towar" Multiplicity="1" />
+    <End Role="towar_zamowienie" Type="Self.towar_zamowienie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="towar">
+        <PropertyRef Name="idTowaru" />
+      </Principal>
+      <Dependent Role="towar_zamowienie">
+        <PropertyRef Name="idTowaru" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idwykonawcy">
+    <End Role="wykonawca" Type="Self.wykonawca" Multiplicity="1" />
+    <End Role="towar" Type="Self.towar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wykonawca">
+        <PropertyRef Name="idWykonawcy" />
+      </Principal>
+      <Dependent Role="towar">
+        <PropertyRef Name="idWykonawcy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idwytworni">
+    <End Role="wytwornia" Type="Self.wytwornia" Multiplicity="1" />
+    <End Role="wykonawca" Type="Self.wykonawca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wytwornia">
+        <PropertyRef Name="idWytworni" />
+      </Principal>
+      <Dependent Role="wykonawca">
+        <PropertyRef Name="idWytwórni" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idzamowienia">
+    <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="1" />
+    <End Role="towar_zamowienie" Type="Self.towar_zamowienie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zamowienia">
+        <PropertyRef Name="idZamowienia" />
+      </Principal>
+      <Dependent Role="towar_zamowienie">
+        <PropertyRef Name="idZamowienia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="szkolaEntities5" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="gatunek" EntityType="Self.gatunek" />
+    <EntitySet Name="klient" EntityType="Self.klient" />
+    <EntitySet Name="towar" EntityType="Self.towar" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <EntitySet Name="wykonawca" EntityType="Self.wykonawca" />
+    <EntitySet Name="wytwornia" EntityType="Self.wytwornia" />
+    <EntitySet Name="zamowienia" EntityType="Self.zamowienia" />
+    <EntitySet Name="koszyk" EntityType="Self.koszyk" />
+    <EntitySet Name="towar_zamowienie" EntityType="Self.towar_zamowienie" />
+    <AssociationSet Name="idgatunku" Association="Self.idgatunku">
+      <End Role="gatunek" EntitySet="gatunek" />
+      <End Role="towar" EntitySet="towar" />
+    </AssociationSet>
+    <AssociationSet Name="idklient" Association="Self.idklient">
+      <End Role="klient" EntitySet="klient" />
+      <End Role="koszyk" EntitySet="koszyk" />
+    </AssociationSet>
+    <AssociationSet Name="idklienta" Association="Self.idklienta">
+      <End Role="klient" EntitySet="klient" />
+      <End Role="zamowienia" EntitySet="zamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="idtowar" Association="Self.idtowar">
+      <End Role="towar" EntitySet="towar" />
+      <End Role="koszyk" EntitySet="koszyk" />
+    </AssociationSet>
+    <AssociationSet Name="idtowaru" Association="Self.idtowaru">
+      <End Role="towar" EntitySet="towar" />
+      <End Role="towar_zamowienie" EntitySet="towar_zamowienie" />
+    </AssociationSet>
+    <AssociationSet Name="idwykonawcy" Association="Self.idwykonawcy">
+      <End Role="wykonawca" EntitySet="wykonawca" />
+      <End Role="towar" EntitySet="towar" />
+    </AssociationSet>
+    <AssociationSet Name="idwytworni" Association="Self.idwytworni">
+      <End Role="wytwornia" EntitySet="wytwornia" />
+      <End Role="wykonawca" EntitySet="wykonawca" />
+    </AssociationSet>
+    <AssociationSet Name="idzamowienia" Association="Self.idzamowienia">
+      <End Role="zamowienia" EntitySet="zamowienia" />
+      <End Role="towar_zamowienie" EntitySet="towar_zamowienie" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

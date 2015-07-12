@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SklepMuzyczny.gatunek>
+
+@{
+    ViewBag.Title = "Lista gatunków";
+}
+
+<h2>Lista gatunków  muzycznych...</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table border="1" width="600" height="50" >
+    
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idGatunku)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idGatunku)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idGatunku }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idGatunku }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idGatunku })
+            </td>
+        </tr>
+    }
+
+</table>

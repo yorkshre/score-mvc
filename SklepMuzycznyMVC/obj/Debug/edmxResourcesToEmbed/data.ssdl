@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="szkola.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="gatunek">
+    <Key>
+      <PropertyRef Name="idGatunku" />
+    </Key>
+    <Property Name="idGatunku" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Opis" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="klient">
+    <Key>
+      <PropertyRef Name="idKlienta" />
+    </Key>
+    <Property Name="idKlienta" Type="int" Nullable="false" />
+    <Property Name="Imie" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Telefon" Type="int" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="Nr_konta" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pracownicy">
+    <Key>
+      <PropertyRef Name="idPracownika" />
+    </Key>
+    <Property Name="idPracownika" Type="int" Nullable="false" />
+    <Property Name="Imie" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Stanowisko" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Nr_telefonu" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="towar">
+    <Key>
+      <PropertyRef Name="idTowaru" />
+    </Key>
+    <Property Name="idTowaru" Type="int" Nullable="false" />
+    <Property Name="idWykonawcy" Type="int" Nullable="false" />
+    <Property Name="idGatunku" Type="int" Nullable="false" />
+    <Property Name="Nazwa" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Cena" Type="int" Nullable="false" />
+    <Property Name="Rok_wyd" Type="date" Nullable="false" />
+    <Property Name="Ilosc_cd" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.szkola.towar_zamowienie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="towar_zamowienie">
+    <Key>
+      <PropertyRef Name="idTowaru" />
+      <PropertyRef Name="idZamówienia" />
+      <PropertyRef Name="Ilość" />
+      <PropertyRef Name="Cena" />
+    </Key>
+    <Property Name="idTowaru" Type="int" Nullable="false" />
+    <Property Name="idZamówienia" Type="int" Nullable="false" />
+    <Property Name="Ilość" Type="int" Nullable="false" />
+    <Property Name="Cena" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="wykonawca">
+    <Key>
+      <PropertyRef Name="idWykonawcy" />
+    </Key>
+    <Property Name="idWykonawcy" Type="int" Nullable="false" />
+    <Property Name="idWytwórni" Type="int" Nullable="false" />
+    <Property Name="Imie" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="wytwornia">
+    <Key>
+      <PropertyRef Name="idWytworni" />
+    </Key>
+    <Property Name="idWytworni" Type="int" Nullable="false" />
+    <Property Name="Nazwa" Type="varchar" MaxLength="45" Nullable="false" />
+  </EntityType>
+  <EntityType Name="zamowienia">
+    <Key>
+      <PropertyRef Name="idZamowienia" />
+    </Key>
+    <Property Name="idZamowienia" Type="int" Nullable="false" />
+    <Property Name="idKlienta" Type="int" Nullable="false" />
+    <Property Name="idPracownika" Type="int" Nullable="false" />
+    <Property Name="Data" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="idgatunku">
+    <End Role="gatunek" Type="Self.gatunek" Multiplicity="1" />
+    <End Role="towar" Type="Self.towar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gatunek">
+        <PropertyRef Name="idGatunku" />
+      </Principal>
+      <Dependent Role="towar">
+        <PropertyRef Name="idGatunku" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idklienta">
+    <End Role="klient" Type="Self.klient" Multiplicity="1" />
+    <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="klient">
+        <PropertyRef Name="idKlienta" />
+      </Principal>
+      <Dependent Role="zamowienia">
+        <PropertyRef Name="idKlienta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idpracownika">
+    <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="1" />
+    <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pracownicy">
+        <PropertyRef Name="idPracownika" />
+      </Principal>
+      <Dependent Role="zamowienia">
+        <PropertyRef Name="idPracownika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idtowaru">
+    <End Role="towar" Type="Self.towar" Multiplicity="1" />
+    <End Role="towar_zamowienie" Type="Self.towar_zamowienie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="towar">
+        <PropertyRef Name="idTowaru" />
+      </Principal>
+      <Dependent Role="towar_zamowienie">
+        <PropertyRef Name="idTowaru" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idwykonawcy">
+    <End Role="wykonawca" Type="Self.wykonawca" Multiplicity="1" />
+    <End Role="towar" Type="Self.towar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wykonawca">
+        <PropertyRef Name="idWykonawcy" />
+      </Principal>
+      <Dependent Role="towar">
+        <PropertyRef Name="idWykonawcy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idwytworni">
+    <End Role="wytwornia" Type="Self.wytwornia" Multiplicity="1" />
+    <End Role="wykonawca" Type="Self.wykonawca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wytwornia">
+        <PropertyRef Name="idWytworni" />
+      </Principal>
+      <Dependent Role="wykonawca">
+        <PropertyRef Name="idWytwórni" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="idzamowienia">
+    <End Role="zamowienia" Type="Self.zamowienia" Multiplicity="1" />
+    <End Role="towar_zamowienie" Type="Self.towar_zamowienie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zamowienia">
+        <PropertyRef Name="idZamowienia" />
+      </Principal>
+      <Dependent Role="towar_zamowienie">
+        <PropertyRef Name="idZamówienia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="szkolaStoreContainer">
+    <EntitySet Name="gatunek" EntityType="Self.gatunek" Schema="szkola" store:Type="Tables" />
+    <EntitySet Name="klient" EntityType="Self.klient" Schema="szkola" store:Type="Tables" />
+    <EntitySet Name="pracownicy" EntityType="Self.pracownicy" Schema="szkola" store:Type="Tables" />
+    <EntitySet Name="towar" EntityType="Self.towar" Schema="szkola" store:Type="Tables" />
+    <EntitySet Name="wykonawca" EntityType="Self.wykonawca" Schema="szkola" store:Type="Tables" />
+    <EntitySet Name="wytwornia" EntityType="Self.wytwornia" Schema="szkola" store:Type="Tables" />
+    <EntitySet Name="zamowienia" EntityType="Self.zamowienia" Schema="szkola" store:Type="Tables" />
+    <EntitySet Name="towar_zamowienie" EntityType="Self.towar_zamowienie" store:Type="Tables" store:Schema="szkola">
+      <DefiningQuery>SELECT
+`towar_zamowienie`.`idTowaru`, 
+`towar_zamowienie`.`idZamówienia`, 
+`towar_zamowienie`.`Ilość`, 
+`towar_zamowienie`.`Cena`
+FROM `towar_zamowienie` AS `towar_zamowienie`</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="idgatunku" Association="Self.idgatunku">
+      <End Role="gatunek" EntitySet="gatunek" />
+      <End Role="towar" EntitySet="towar" />
+    </AssociationSet>
+    <AssociationSet Name="idklienta" Association="Self.idklienta">
+      <End Role="klient" EntitySet="klient" />
+      <End Role="zamowienia" EntitySet="zamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="idpracownika" Association="Self.idpracownika">
+      <End Role="pracownicy" EntitySet="pracownicy" />
+      <End Role="zamowienia" EntitySet="zamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="idtowaru" Association="Self.idtowaru">
+      <End Role="towar" EntitySet="towar" />
+      <End Role="towar_zamowienie" EntitySet="towar_zamowienie" />
+    </AssociationSet>
+    <AssociationSet Name="idwykonawcy" Association="Self.idwykonawcy">
+      <End Role="wykonawca" EntitySet="wykonawca" />
+      <End Role="towar" EntitySet="towar" />
+    </AssociationSet>
+    <AssociationSet Name="idwytworni" Association="Self.idwytworni">
+      <End Role="wytwornia" EntitySet="wytwornia" />
+      <End Role="wykonawca" EntitySet="wykonawca" />
+    </AssociationSet>
+    <AssociationSet Name="idzamowienia" Association="Self.idzamowienia">
+      <End Role="zamowienia" EntitySet="zamowienia" />
+      <End Role="towar_zamowienie" EntitySet="towar_zamowienie" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

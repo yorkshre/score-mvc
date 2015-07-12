@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="szkolaModelStoreContainer" CdmEntityContainer="szkolaEntities5">
+    <EntitySetMapping Name="gatunek">
+      <EntityTypeMapping TypeName="szkolaModel.gatunek">
+        <MappingFragment StoreEntitySet="gatunek">
+          <ScalarProperty Name="idGatunku" ColumnName="idGatunku" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="klient">
+      <EntityTypeMapping TypeName="szkolaModel.klient">
+        <MappingFragment StoreEntitySet="klient">
+          <ScalarProperty Name="idKlienta" ColumnName="idKlienta" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Nr_konta" ColumnName="Nr_konta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="towar">
+      <EntityTypeMapping TypeName="szkolaModel.towar">
+        <MappingFragment StoreEntitySet="towar">
+          <ScalarProperty Name="idTowaru" ColumnName="idTowaru" />
+          <ScalarProperty Name="idWykonawcy" ColumnName="idWykonawcy" />
+          <ScalarProperty Name="idGatunku" ColumnName="idGatunku" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+          <ScalarProperty Name="Rok_wyd" ColumnName="Rok_wyd" />
+          <ScalarProperty Name="Ilosc_cd" ColumnName="Ilosc_cd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="szkolaModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="wykonawca">
+      <EntityTypeMapping TypeName="szkolaModel.wykonawca">
+        <MappingFragment StoreEntitySet="wykonawca">
+          <ScalarProperty Name="idWykonawcy" ColumnName="idWykonawcy" />
+          <ScalarProperty Name="idWytwórni" ColumnName="idWytwórni" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="wytwornia">
+      <EntityTypeMapping TypeName="szkolaModel.wytwornia">
+        <MappingFragment StoreEntitySet="wytwornia">
+          <ScalarProperty Name="idWytworni" ColumnName="idWytworni" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zamowienia">
+      <EntityTypeMapping TypeName="szkolaModel.zamowienia">
+        <MappingFragment StoreEntitySet="zamowienia">
+          <ScalarProperty Name="idZamowienia" ColumnName="idZamowienia" />
+          <ScalarProperty Name="idKlienta" ColumnName="idKlienta" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="koszyk">
+      <EntityTypeMapping TypeName="szkolaModel.koszyk">
+        <MappingFragment StoreEntitySet="koszyk">
+          <ScalarProperty Name="idTowaru" ColumnName="idTowaru" />
+          <ScalarProperty Name="idKlienta" ColumnName="idKlienta" />
+          <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="towar_zamowienie">
+      <EntityTypeMapping TypeName="szkolaModel.towar_zamowienie">
+        <MappingFragment StoreEntitySet="towar_zamowienie">
+          <ScalarProperty Name="idTowaru" ColumnName="idTowaru" />
+          <ScalarProperty Name="idZamowienia" ColumnName="idZamowienia" />
+          <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

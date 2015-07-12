@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "ListaGatunku1";
+}
+
+<h2>ListaGatunku1</h2>
+@{
+    int i = ViewBag.nazwa.Count;
+    for (int j = 0; j < i; j++)
+    {
+        <a href="~/Towar/Details">@ViewBag.nazwa[j]</a>
+        <br />
+    }
+}
+}

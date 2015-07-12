@@ -1,0 +1,65 @@
+﻿@model SklepMuzyczny.Models.user
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>user</legend>
+        <div class="editor-label">
+            @Html.LabelFor(Model => Model.FullName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(Model => Model.FullName)
+            @Html.ValidationMessageFor(Model => Model.FullName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(Model => Model.EmailID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(Model => Model.EmailID)
+            @Html.ValidationMessageFor(Model => Model.EmailID)
+        </div>
+        <div class ="editor-label">
+            @Html.LabelFor(Model=>Model.Username)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(Model => Model.Username)
+            @Html.ValidationMessageFor(Model=>Model.Username)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(Model => Model.password)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(Model => Model.password)
+            @Html.ValidationMessageFor(Model => Model.password)
+        </div>
+       
+    <div class="editor-label">
+        @Html.LabelFor(Model => Model.ConfirmPassword)
+    </div>
+        <div class="editor-field">
+            @Html.EditorFor(Model => Model.ConfirmPassword)
+            @Html.ValidationMessageFor(Model => Model.ConfirmPassword)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

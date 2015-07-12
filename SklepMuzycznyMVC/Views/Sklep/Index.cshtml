@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "IndexSklep";
+}
+
+<h1>Lista gatunków</h1>
+@{
+    int i = ViewBag.names.Count;
+    for (int j = 0; j < i; j++)
+    {
+        <a href="Sklep/ListaTowaru1/@ViewBag.id[j]">@ViewBag.names[j]</a>
+        <br />
+    }
+
+   
+    }

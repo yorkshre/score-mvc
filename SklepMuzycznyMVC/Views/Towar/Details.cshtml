@@ -1,0 +1,107 @@
+﻿@model SklepMuzycznyMVC.towar
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>towar</legend>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.idTowaru)
+                </div>
+            </div>
+            <div class="col-md-2">
+
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.idTowaru)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.wykonawca.Imie)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.wykonawca.Imie)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.gatunek.Name)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.gatunek.Name)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Nazwa)
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Nazwa)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.Cena)
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Cena)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-1">
+               <div class="display-label">
+                @Html.DisplayNameFor(model => model.Rok_wyd)
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Rok_wyd)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Ilosc_cd)
+            </div>
+            </div>
+           <div class="col-md-2">
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Ilosc_cd)
+            </div>
+        </div>
+    </div>
+ </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
